@@ -8,19 +8,15 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="650dp"
-        android:layout_height="674dp"
-        android:text="lasdfjnnaloıhfqwowejasfdhjasşıf jasfhasşldfjakdlf"
-        tools:layout_editor_absoluteX="1283dp"
-        tools:layout_editor_absoluteY="1344dp"
-        tools:text="asrgfasgadsdfgdfad" />
+        android:id="@+id/txtGosterge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bu yazı XML kodundan geldi"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="513dp"
-        android:layout_height="424dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="1437dp"
-        tools:layout_editor_absoluteY="2071dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
