@@ -28,6 +28,6 @@ class MainActivity : AppCompatActivity() {
         // 2. Yazının içeriğini kodla değiştirdik
         anaYazi.text = "Aga her şeyi kodla kontrol ediyoruz!"
 
-        // --- BİZİM KODLAR BURADA BİTİYOR ---
+        // --- BİZİM KODLAR BURADA BİTİYORR ---
     }
 }
