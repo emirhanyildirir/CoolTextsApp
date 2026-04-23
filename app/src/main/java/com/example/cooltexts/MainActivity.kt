@@ -1,5 +1,8 @@
 package com.example.cooltexts
 
+import android.app.WallpaperManager
+import android.content.ComponentName
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -13,21 +16,23 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Android'in kendi sistem çubuğu (saat, pil vs.) ayarları
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // --- BİZİM KODLAR BURADAN BAŞLIYOR ---
-
-        // 1. Kaportadaki yazıyı ID'si ile bulup değişkene bağladık
         val anaYazi = findViewById<TextView>(R.id.txtGosterge)
+        anaYazi.text = "Uygulama Çalışıyor. Duvar kağıdını ayarlamak için tıkla."
 
-        // 2. Yazının içeriğini kodla değiştirdik
-        anaYazi.text = "Aga her şeyi kodla kontrol ediyoruz!"
-
-        // --- BİZİM KODLAR BURADA BİTİYORR ---
+        // Ekrana tıkladığında Canlı Duvar Kağıdı ayarlama ekranını açar
+        anaYazi.setOnClickListener {
+            val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
+            intent.putExtra(
+                WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT,
+                ComponentName(this, MyWallpaperService::class.java)
+            )
+            startActivity(intent)
+        }
     }
 }
