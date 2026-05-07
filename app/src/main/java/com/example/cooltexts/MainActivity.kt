@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val anaYazi = findViewById<TextView>(R.id.txtGosterge)
         anaYazi.text = "Uygulama Çalışıyor. Duvar kağıdını ayarlamak için tıkla."
 
-        // Ekrana tıkladığında Canlı Duvar Kağıdı ayarlama ekranını açar
+
         anaYazi.setOnClickListener {
             val intent = Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER)
             intent.putExtra(

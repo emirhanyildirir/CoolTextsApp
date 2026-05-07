@@ -12,7 +12,6 @@ class MyWallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine = MyEngine()
 
     inner class MyEngine : Engine() {
-        // Senin hayat disiplinine ve ilgi alanlarına göre listeyi güncelledik
         private val texts = listOf(
             // --- İSPANYOLCA ---
             "La inspiración existe, pero tiene que encontrarte trabajando. ~ Pablo Picasso\nİlham diye bir şey vardır, ama seni çalışırken bulmak zorundadır.",
@@ -1199,6 +1198,7 @@ class MyWallpaperService : WallpaperService() {
             "Хүчтэй нь сул доройгоо иднэ (Khuchtei ni sul doroigoo idne). ~ Göçebe Kuralı\nGüçlü zayıfı yer. Doğanın bu acımasız kanununa ağlamayı bırak, güçlü ol.",
             "Өглөөний нар шиг бос (Ogloony nar shig bos). ~ Moğol Atasözü\nSabah güneşi gibi acımasız ve yakıcı doğ, karanlığı yırt.",
 
+
             // --- KORECE (Tarihi Generaller & Dövüş Sanatları) ---
             "필사즉생 필생즉사 (Pilsajeuksaeng Pilsaengjeuksa). ~ Amiral Yi Sun-sin\nÖlümü göze alanlar yaşar, yaşamak için kaçanlar ise elbet ölür.",
             "신에게는 아직 열두 척의 배가 남아 있사옵니다 (Sinegeneun ajik yeoldu cheogui baega nama itsaopnida). ~ Amiral Yi Sun-sin\nKomutanım, benim emrimde savaşacak daha 12 gemim var! (Asla pes etme).",
@@ -1273,20 +1273,19 @@ class MyWallpaperService : WallpaperService() {
         private val textPaint = TextPaint().apply {
             color = Color.WHITE
             textSize = 60f
-            isAntiAlias = true // Yazının kenarları pürüzsüz olsun
+            isAntiAlias = true
         }
 
         private var cachedLayout: StaticLayout? = null
 
-        // Ekranın durumu her değiştiğinde (Açılma/Kapanma) çalışan bekçi
+
         override fun onVisibilityChanged(visible: Boolean) {
             super.onVisibilityChanged(visible)
             if (visible) {
-                // Ekran açıldı: Hesap kitapla uğraşma, direkt hazır olanı bas!
+
                 drawTextOnScreen()
             } else {
-                // Ekran kapandı: Kullanıcı görmüyorken bir sonraki seferin
-                // hazırlığını yap ve hemen ardından CPU'yu serbest bırak.
+
                 prepareNextLayout()
             }
         }
@@ -1295,12 +1294,11 @@ class MyWallpaperService : WallpaperService() {
             val width = surfaceHolder.surfaceFrame.width()
             val textWidth = width - 120
 
-            // HAYAT KURTARAN ZIRH: Ekran genişliği hesaplanamadıysa veya eksiye düştüyse sistemi durdur!
+
             if (width <= 0 || textWidth <= 0) return
 
             val randomText = texts[Random.nextInt(texts.size)]
 
-            // Genişliğin sıfırdan küçük olma ihtimalini tamamen yok ettik
             cachedLayout = StaticLayout.Builder.obtain(
                 randomText, 0, randomText.length, textPaint, textWidth
             )
@@ -1314,7 +1312,6 @@ class MyWallpaperService : WallpaperService() {
             val holder = surfaceHolder
             var canvas: Canvas? = null
 
-            // İKİNCİ ZIRH: Eğer çizim sırasında Android sistemi sapıtırsa, çökmeyi yut ve telefonu koru
             try {
                 canvas = holder.lockCanvas()
                 if (canvas != null) {
@@ -1331,7 +1328,7 @@ class MyWallpaperService : WallpaperService() {
                     }
                 }
             } catch (e: Exception) {
-                e.printStackTrace() // Hata olursa telefonu patlatmak yerine sadece log'a yazdır
+                e.printStackTrace()
             } finally {
                 if (canvas != null) {
                     try {
