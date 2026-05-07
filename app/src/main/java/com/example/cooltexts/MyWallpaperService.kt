@@ -10,7 +10,7 @@ import kotlin.random.Random
 
 class MyWallpaperService : WallpaperService() {
     override fun onCreateEngine(): Engine = MyEngine()
-
+//
     inner class MyEngine : Engine() {
         private val texts = listOf(
             // --- İSPANYOLCA ---
